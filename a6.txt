@@ -34,7 +34,7 @@ $ cat downloaded_tweets_extend_nolf2_REPLIED_NOBOT.tsv downloaded_tweets_extend_
   97 2022-04-29
  
  
-5- Repeat what you did in worksheets 7 and 8 to find the most frequent words (not considering stopwords) in the tweet text (last column) for those users. Which words are the most frequent in that tweet text? Are they what you expected based on the frequent hashtags from previous assignments?
+5- Repeat what you did in worksheets 7 and 8 to find the most frequent words (not considering stopwords) in the tweet text (last column) for those users. Which words are the most frequent in that tweet text? 
  
 for INFLUSER in `cat influential_users.txt| sort|uniq|head -100`; do awk -v VAR=$INFLUSER -F"\t" '($2 = VAR) {print $8}' downloaded_tweets_extend_nolf2_REPLIED_NOBOT.tsv; done|sed -e 's/[^[:alpha:]]/ /g'|  tr '\n' " " |  tr -s " " | tr " " '\n'| tr 'A-Z' 'a-z' | sed s/\<and\>//gI; s/\<or\>//gI; s/\<if\>//gI; s/\<in\>//gI; s/\<it\>//gI;s/\<t\>//gI;s/\<of\>//gI;s/\<a\>//gI;s/\<you\>//gI;s/\<the\>//gI;s/\<to\>//gI;s/\<is\>//gI;s/\<s\>//gI;s/\< \>//gI;s/\<s\>//gI;s/\<amp\>/gI;'| sort | uniq -c | sort -nr| head -10
  
@@ -49,3 +49,5 @@ for INFLUSER in `cat influential_users.txt| sort|uniq|head -100`; do awk -v VAR=
   59900 covid
   54000 this
 
+Are they what you expected based on the frequent hashtags from previous assignments?
+No. I expected the words that relevant to political things would appear more.
